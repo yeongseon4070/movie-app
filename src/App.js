@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 //{}안에는 함수, 상태값들이 들어간다
 //일단 1딘계는 use State 선언한다.
 import axios from "axios";
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from "reactstrap"
-
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col, Container} from "reactstrap"
+//순서는 상관없이 나열하고 가져다가 쓰면 되는거임
 const App = () => {
     const [hiseon, setHiseon] = useState([])
     //useState 값들의 함수 이름과 표시할 명칭과 텍스트 등의 콘텐츠들을 입력해둔다
@@ -36,25 +36,33 @@ const App = () => {
               {hiseon.length}
               {/*5단계 해당 부분 담기는 값들의 표시 개수 설정을 위해서 하이선의 개수 표시 함수를 넣어준다.*/}
           </h1>
-            {hiseon.map(seon =>(
-                <Card key={seon.id}>
-                    <CardBody>
-                        <CardTitle tag="h5">
-                            {seon.name}
-                        </CardTitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            {seon.first_air_date}
-                        </CardSubtitle>
-                        <CardText>
-                            {seon.overview}
-                        </CardText>
-                    </CardBody>
-                </Card>
-                // html를 활용해서 오픈 css를 활용해서 작성해주고, 담긴 데이터들을 뿌려주는 작업을 진행해준다.
-            ))}
+            <Container>
+                <Row>
+                    {hiseon.map(hi => (
+                        <Col>
+                            <Card
+                            >
+                                <CardBody>
+                                    <CardTitle tag="h5">
+                                        {hi.original_name}
+                                    </CardTitle>
+                                    <CardSubtitle
+                                        className="mb-2 text-muted"
+                                        tag="h6"
+                                    >
+                                        {hi.first_air_date}
+                                    </CardSubtitle>
+                                    <CardText>
+                                        {hi.overview}
+                                    </CardText>
+
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
+
             {/*hiseon의 함수에대한 값들을 뿌려주기 위해서*/}
             {/*해당 부분에서 데이터 값들을 보고 여러개의 정보들을 뿌려주겠다라는걸 map으로 선언해준다.*/}
             {/*그리고 해당 명칭을 임의로 지정해서 임력해둔다. 그리고 함수의 값을 명칭+ 데이터의 종류값들을 입력해둔다.*/}
