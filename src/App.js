@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 //{}안에는 함수, 상태값들이 들어간다
 //일단 1딘계는 use State 선언한다.
 import axios from "axios";
+import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button } from "reactstrap"
 
 const App = () => {
     const [hiseon, setHiseon] = useState([])
@@ -36,10 +37,23 @@ const App = () => {
               {/*5단계 해당 부분 담기는 값들의 표시 개수 설정을 위해서 하이선의 개수 표시 함수를 넣어준다.*/}
           </h1>
             {hiseon.map(seon =>(
-                <h1>
-                    {seon.id}
-                    {seon.name}
-                </h1>
+                <Card key={seon.id}>
+                    <CardBody>
+                        <CardTitle tag="h5">
+                            {seon.name}
+                        </CardTitle>
+                        <CardSubtitle
+                            className="mb-2 text-muted"
+                            tag="h6"
+                        >
+                            {seon.first_air_date}
+                        </CardSubtitle>
+                        <CardText>
+                            {seon.overview}
+                        </CardText>
+                    </CardBody>
+                </Card>
+                // html를 활용해서 오픈 css를 활용해서 작성해주고, 담긴 데이터들을 뿌려주는 작업을 진행해준다.
             ))}
             {/*hiseon의 함수에대한 값들을 뿌려주기 위해서*/}
             {/*해당 부분에서 데이터 값들을 보고 여러개의 정보들을 뿌려주겠다라는걸 map으로 선언해준다.*/}
