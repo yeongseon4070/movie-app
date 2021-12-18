@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 //{}안에는 함수, 상태값들이 들어간다
 //일단 1딘계는 use State 선언한다.
 import axios from "axios";
-import {Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col, Container} from "reactstrap"
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Row, Col, Container, CardImg} from "reactstrap"
 //순서는 상관없이 나열하고 가져다가 쓰면 되는거임
 const App = () => {
     const [hiseon, setHiseon] = useState([])
@@ -39,12 +39,19 @@ const App = () => {
             <Container>
                 <Row>
                     {hiseon.map(hi => (
-                        <Col>
-                            <Card
-                            >
+                        <Col sm={"4"}>
+                            <Card>
+                                <CardImg
+                                    alt="Card image cap"
+                                    src={"https://image.tmdb.org/t/p/w500"+hi.poster_path}
+                                    top
+                                    width="100%"
+                                />
+                                {/*일단 해당 이미지를 넣기 위해서 카드 이미지 함수 선언을 위해서 해주고.*/}
+                                {/*하당 src 의 값들을 데이터 이름+ 이미지 데이터 이름을 허고, 앞에 링크를 넣어준다. 데이터의 구조를 보면됨.*/}
                                 <CardBody>
                                     <CardTitle tag="h5">
-                                        {hi.original_name}
+                                        {hi.name}
                                     </CardTitle>
                                     <CardSubtitle
                                         className="mb-2 text-muted"
